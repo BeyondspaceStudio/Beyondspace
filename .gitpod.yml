@@ -1,0 +1,11 @@
+# List the start up tasks. Learn more https://www.gitpod.io/docs/config-start-tasks/
+tasks:
+  - before: npm install --global http-server
+    init: echo 'install http-server' # runs during prebuild
+  - before: npm install --global np
+    init: echo 'install np' # runs during prebuild
+
+# List the ports to expose. Learn more https://www.gitpod.io/docs/config-ports/
+ports:
+  - port: 8080
+    onOpen: open-preview
