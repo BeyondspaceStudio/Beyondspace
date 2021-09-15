@@ -41,7 +41,7 @@ app.get('*', function(req, res){
 });
 
 app.listen(port, host, function() {
-  console.log('Running CORS Anywhere on ' + host + ':' + port);
+  console.log('Running Beyondspace Packge Info on ' + host + ':' + port);
 });
 
 /*app.listen(port, () => {
