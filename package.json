@@ -1,6 +1,6 @@
 {
     "name": "beyondspace",
-    "version": "0.1.1-0",
+    "version": "0.1.2-0",
     "description": "Beyondspace utility and simple node app to get npm package info",
     "main": "functions/server.js",
     "scripts": {
