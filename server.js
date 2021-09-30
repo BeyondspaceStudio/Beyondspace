@@ -5,6 +5,7 @@ var port = process.env.PORT || 3000;
 
 const { exec } = require('child_process')
 const express = require('express')
+const fetch = require('node-fetch')
 const app = express()
 
 app.get('/npm/:package', async (req, res) => {
@@ -33,6 +34,20 @@ app.get('/npm/:scoped/:package', async (req, res) => {
 
 app.get('/npm', async (req, res) => {
     res.send(`Add the package name in the correct format to get all package version in JSON /npm/:packageName or /npm/:scoped/:packageName`)
+})
+
+app.get('/youtube/playlist/:playlistId', async (req, res) => {
+  const { playlistId } = req.params;
+  const { nextPageToken } = req.query;
+  let endpoint = `https://storage.elfsight.com/api/youtube?q=%2FplaylistItems%3FplaylistId%3D${playlistId}%26part%3DcontentDetails%252Csnippet%26maxResults%3D50&public_key=RWxmc2lnaHQuIEFsbCByaWdodHMgcmVzZXJ2ZWQu&_=1632989332243`;
+
+  if ( nextPageToken ) {
+    endpoint = `https://storage.elfsight.com/api/youtube?q=%2FplaylistItems%3FplaylistId%3D${playlistId}%26part%3DcontentDetails%252Csnippet%26maxResults%3D50%26pageToken%3D${nextPageToken}&public_key=RWxmc2lnaHQuIEFsbCByaWdodHMgcmVzZXJ2ZWQu&_=1632990261177`
+  }
+
+  const response = await fetch(endpoint);
+  const data = await response.text()
+  res.send(data);
 })
 
 //The 404 Route (ALWAYS Keep this as the last route)
