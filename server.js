@@ -53,6 +53,16 @@ app.get('/youtube/playlist/:playlistId', async (req, res) => {
   res.send(data);
 })
 
+app.get('/youtube/videos/:videosId', async (req, res) => {
+  const { videosId } = req.params;
+  const videos = videosId.split(",").join("%252C");
+  let endpoint = `https://storage.elfsight.com/api/youtube?q=%2Fvideos%3Fid%3D${videos}%26part%3Dsnippet%252CcontentDetails%252Cstatistics&public_key=RWxmc2lnaHQuIEFsbCByaWdodHMgcmVzZXJ2ZWQu&_=1633003808714`;
+
+  const response = await fetch(endpoint);
+  const data = await response.text()
+  res.send(data);
+})
+
 //The 404 Route (ALWAYS Keep this as the last route)
 app.get('*', function(req, res){
     res.status(404).send(`Add the package name in the correct format to get all package version in JSON /npm/:packageName or /npm/:scoped/:packageName`)
