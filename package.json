@@ -2,7 +2,6 @@
     "name": "beyondspace",
     "version": "0.2.0",
     "scripts": {
-        "build": "netlify-lambda build express",
         "start": "nodemon server.js"
     },
     "dependencies": {
