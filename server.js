@@ -6,7 +6,10 @@ var port = process.env.PORT || 3000;
 const { exec } = require('child_process')
 const express = require('express')
 const fetch = require('node-fetch')
+var cors = require('cors')
 const app = express()
+
+app.use(cors())
 
 app.get('/npm/:package', async (req, res) => {
     const { package } = req.params;
